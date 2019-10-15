@@ -1,0 +1,10 @@
+
+
+@function getColor($colorx, $alpha: 1) {
+  @return unquote("rgba(var(--vs-" + $colorx + "), " + $alpha + ")");
+}
+
+
+@function getVar($var) {
+  @return unquote("var(--vs-" + $var + ")");
+}

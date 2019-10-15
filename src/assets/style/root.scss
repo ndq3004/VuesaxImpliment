@@ -1,0 +1,8 @@
+:root  {
+  --vs-primary: map-get($vs-colors, 'primary');
+  --vs-danger: map-get($vs-colors, 'danger');
+  --vs-success: map-get($vs-colors, 'success');
+  --vs-dark: map-get($vs-colors, 'dark');
+  --vs-warning: map-get($vs-colors, 'warning');
+  --vs-light: map-get($vs-colors, 'light');
+}
