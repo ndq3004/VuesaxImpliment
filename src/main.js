@@ -5,6 +5,8 @@ import store from './store'
 import './globalComponents'
 import i18n from './i18n/i18n'
 import '@/assets/css/tailwind.css'
+import '@/assets/style/vuesax.scss'
+import 'vue-material-design-icons/styles.css'
 
 Vue.config.productionTip = false
 

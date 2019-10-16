@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    ppp
     <layout></layout>
-    <router-view />
+    <!-- <router-view /> -->
+    <!-- <vs-icon :iconComponent="Settings"></vs-icon> -->
   </div>
 </template>
-
 <script>
-// import HelloVue from '@/components/HelloWorld.vue'
+// import Settings from 'vue-material-design-icons/Settings.vue'
 export default {
   components: {
     // HelloVue
+    // Settings
   },
   data() {
     return {
       active: true
+      // iconComponent: Settings
     }
   }
 }

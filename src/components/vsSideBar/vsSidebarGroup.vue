@@ -1,22 +1,23 @@
 <template>
   <div
-    :class="{'vs-sidebar-group-open' : openItems}"
+    :class="{ 'vs-sidebar-group-open': openItems }"
     class="vs-sidebar-group"
     @mouseover="mouseover"
-    @mouseout="mouseout">
-    <h4 @click="clickGroup">{{ title }} <vs-icon>keyboard_arrow_down</vs-icon></h4>
+    @mouseout="mouseout"
+  >
+    <h4 @click="clickGroup">
+      {{ title }}
+      <vs-icon>keyboard_arrow_down</vs-icon>
+    </h4>
     <span class="vs-sidebar--tooltip">{{ title }}</span>
-    <ul
-      ref="items"
-      :style="styleItems"
-      class="vs-sidebar--group-items">
+    <ul ref="items" :style="styleItems" class="vs-sidebar--group-items">
       <slot></slot>
     </ul>
   </div>
 </template>
 <script>
 export default {
-  name:'VsSidebarGroup',
+  name: 'VsSidebarGroup',
   props: {
     collapsed: {
       default: false,
@@ -39,7 +40,7 @@ export default {
     maxHeight: '0px',
     openItems: false
   }),
-  computed:{
+  computed: {
     styleItems() {
       return {
         maxHeight: this.maxHeight
@@ -47,32 +48,31 @@ export default {
     }
   },
   watch: {
-    maxHeight () {
+    maxHeight() {
       this.openItems = this.maxHeight != '0px'
-
     }
   },
-  mounted () {
+  mounted() {
     this.openItems = this.open
-    if(this.open) {
+    if (this.open) {
       this.maxHeight = 'none'
     }
   },
-  methods:{
-    getActive () {
+  methods: {
+    getActive() {
       return this.$parent.getActive()
     },
-    setIndexActive (index) {
+    setIndexActive(index) {
       this.$parent.setIndexActive(index)
     },
     clickGroup() {
-      if(!this.openHover) {
+      if (!this.openHover) {
         let scrollHeight = this.$refs.items.scrollHeight
-        if(this.maxHeight == '0px') {
+        if (this.maxHeight == '0px') {
           this.maxHeight = `${scrollHeight}px`
           setTimeout(() => {
             this.maxHeight = 'none'
-          },300)
+          }, 300)
         } else {
           this.maxHeight = `${scrollHeight}px`
           setTimeout(() => {
@@ -82,13 +82,13 @@ export default {
       }
     },
     mouseover() {
-      if(this.openHover) {
+      if (this.openHover) {
         let scrollHeight = this.$refs.items.scrollHeight
         this.maxHeight = `${scrollHeight}px`
       }
     },
     mouseout() {
-      if(this.openHover) {
+      if (this.openHover) {
         let scrollHeight = 0
         this.maxHeight = `${scrollHeight}px`
       }
@@ -96,3 +96,6 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+@import '@/assets/style/components/vsSidebar.scss';
+</style>

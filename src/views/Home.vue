@@ -1,5 +1,5 @@
 <template>
-  <div>dsfsdsdfsff</div>
+  <div>sdfsdf</div>
 </template>
 
 <!-- <vs-row></vs-row> -->

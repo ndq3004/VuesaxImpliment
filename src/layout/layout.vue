@@ -1,37 +1,56 @@
 <template>
-  <vs-navbar v-model="activeItem" class="p-2">
-    <div slot="title">
-      <vs-navbar-title>
-        <span>Vuexy</span>
-      </vs-navbar-title>
+  <div class="flex layout">
+    <div class="side-bar">
+      <side-bar></side-bar>
     </div>
-
-    <vs-navbar-item index="0">
-      <a href="#">Home</a>
-    </vs-navbar-item>
-
-    <vs-navbar-item index="1">
-      <a href="#">News</a>
-    </vs-navbar-item>
-    <vs-navbar-item index="2">
-      <a href="#">Update</a>
-    </vs-navbar-item>
-
-    <vs-input
-      icon-pack="feather"
-      icon="icon-search"
-      placeholder="Search"
-      v-model="search"
-    />
-  </vs-navbar>
+    <div class="full-main-navbar">
+      <div class="navbar">
+        <nav-bar></nav-bar>
+      </div>
+      <div>
+        <router-view />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import sideBar from './sidebar.vue'
+import navBar from './navbar.vue'
+
 export default {
   name: 'Layout',
+  components: {
+    sideBar,
+    navBar
+  },
   data: () => ({
     activeItem: 0,
     search: ''
   })
 }
 </script>
+<style lang="scss" scoped>
+.layout {
+  height: 100vh;
+  // background: #cccccc;
+  .side-bar {
+    width: 332px;
+    max-width: 450px;
+  }
+  .full-main-navbar {
+    width: 100%;
+    .navbar {
+      width: 100%;
+      height: 60px;
+      // z-index: 30000;
+    }
+  }
+}
+.display-inline-block {
+  display: inline-block;
+}
+.vs-sidebar--background {
+  background: none !important;
+}
+</style>

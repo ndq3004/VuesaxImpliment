@@ -83,3 +83,6 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+@import '@/assets/style/components/vsNavbar.scss';
+</style>

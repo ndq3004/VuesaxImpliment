@@ -3,10 +3,9 @@
     <div
       v-show="staticPosition || value"
       ref="sidebarbackground"
-      class="vs-content-sidebar">
-      <div
-        v-if="!hiddenBackground"
-        class="vs-sidebar--background"></div>
+      class="vs-content-sidebar"
+    >
+      <div v-if="!hiddenBackground" class="vs-sidebar--background"></div>
       <div
         ref="sidebarContainer"
         :class="[
@@ -20,7 +19,8 @@
             'vs-sidebar-reduceNotHoverExpand': reduceNotHoverExpand
           }
         ]"
-        class="vs-sidebar">
+        class="vs-sidebar"
+      >
         <header class="vs-sidebar--header" v-if="$slots.header">
           <slot name="header"></slot>
         </header>
@@ -40,20 +40,20 @@
 </template>
 <script>
 export default {
-  name:'VsSidebar',
-  props:{
-    value:{
+  name: 'VsSidebar',
+  props: {
+    value: {
       default: false
     },
-    defaultIndex:{
+    defaultIndex: {
       default: null,
       type: [String, Number]
     },
     color: {
-      default:'primary',
+      default: 'primary',
       type: String
     },
-    parent:{
+    parent: {
       default: null,
       type: [String, Object]
     },
@@ -67,7 +67,7 @@ export default {
     },
     positionRight: {
       default: false,
-      type:Boolean
+      type: Boolean
     },
     clickNotClose: {
       default: false,
@@ -77,7 +77,7 @@ export default {
       default: false,
       type: Boolean
     },
-    reduceNotRebound:{
+    reduceNotRebound: {
       default: false,
       type: Boolean
     },
@@ -86,60 +86,70 @@ export default {
       type: Boolean
     },
     hiddenBackground: {
-      default:false,
+      default: false,
       type: Boolean
     }
   },
   data: () => ({
     currentIndex: 0
   }),
-  created () {
+  created() {
     this.currentIndex = this.defaultIndex
   },
-  mounted () {
+  mounted() {
     this.insertBody()
   },
-  watch:{
+  watch: {
     value() {
-      if(!this.clickNotClose) this.addEventClick()
+      if (!this.clickNotClose) this.addEventClick()
     }
   },
-  methods:{
-    getActive () {
+  methods: {
+    getActive() {
       return this.currentIndex
     },
-    setIndexActive (index) {
+    setIndexActive(index) {
       this.currentIndex = index
     },
-    addEventClick () {
+    addEventClick() {
       this.$nextTick(() => {
-        let parentx = typeof this.parent == 'string' ? document.querySelector(this.parent) : this.parent
+        let parentx =
+          typeof this.parent == 'string'
+            ? document.querySelector(this.parent)
+            : this.parent
         let element = parentx || window
-        if(this.value) {
+        if (this.value) {
           setTimeout(() => {
             element.addEventListener('click', this.closeSidebar)
           }, 300)
-
         }
       })
     },
-    closeSidebar (evt) {
+    closeSidebar(evt) {
       let parent = evt.target.closest('.vs-sidebar')
       if (!parent) {
         this.$emit('input', false)
-        let parentx = typeof this.parent == 'string' ? document.querySelector(this.parent) : this.parent
+        let parentx =
+          typeof this.parent == 'string'
+            ? document.querySelector(this.parent)
+            : this.parent
         let element = parentx || window
         element.removeEventListener('click', this.closeSidebar)
       }
     },
-    insertBody () {
-      if(this.parent) {
+    insertBody() {
+      if (this.parent) {
         let elx = this.$refs.sidebarbackground
-        let parentx = typeof this.parent == 'string' ? document.querySelector(this.parent) : this.parent
+        let parentx =
+          typeof this.parent == 'string'
+            ? document.querySelector(this.parent)
+            : this.parent
         parentx.insertBefore(elx, parentx.firstChild)
       }
-
-    },
+    }
   }
 }
 </script>
+<style lang="scss" scoped>
+@import '@/assets/style/components/vsSidebar.scss';
+</style>

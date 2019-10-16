@@ -14,7 +14,6 @@
     ]"
     class="vs-component vs-con-input-label vs-input"
   >
-    {{ readOnly }}
     <label
       v-if="labelPlaceholder ? false : label"
       class="vs-input--label"
@@ -60,7 +59,6 @@
           {{ $attrs.placeholder || labelPlaceholder }}
         </span>
       </transition>
-
       <vs-icon
         v-if="icon"
         class="icon-inputx notranslate vs-input--icon"
@@ -240,10 +238,6 @@ export default {
   }),
   computed: {
     style() {
-      // if(arguments[0] == 1){
-
-      // }
-      debugger
       return {
         border: `1px solid ${
           this.isFocus
@@ -296,9 +290,7 @@ export default {
     }
   },
   methods: {
-    getEvent() {
-      debugger
-    },
+    getEvent() {},
     changeMouseOver(booleanx) {
       this.isHover = booleanx
     },

@@ -1,20 +1,36 @@
 <template>
   <i
     :style="iconStyle"
-    :class="[iconPack, iconPack !='material-icons' ? icon : '',iconClass,getBg,getBgSize,{'round':round}]"
+    :class="[
+      iconPack,
+      iconPack != 'material-icons' ? icon : '',
+      iconClass,
+      getBg,
+      getBgSize,
+      { round: round }
+    ]"
     v-bind="$attrs"
     class="vs-icon notranslate icon-scale"
     v-on="$listeners"
   >
-    <slot>{{ iconPack == 'material-icons' ? icon : '' }}</slot>
+    <slot>
+      {{ iconPack == 'material-icons' ? icon : '' }}
+      <!-- <div v-if="exist"> -->
+      <!-- <component :is="iconComponent"></component> -->
+      <!-- </div> -->
+    </slot>
   </i>
 </template>
 <script>
 import _color from '../../utils/color.js'
 
 export default {
-  name:'VsIcon',
-  props:{
+  name: 'VsIcon',
+  props: {
+    iconComponent: {
+      default: null,
+      type: Object
+    },
     icon: {
       default: null,
       type: String
@@ -38,10 +54,9 @@ export default {
     round: {
       default: false,
       type: Boolean
-    },
-
+    }
   },
-  computed:{
+  computed: {
     iconClass() {
       const classes = {}
       classes[this.size] = true
@@ -52,9 +67,21 @@ export default {
     },
     iconStyle() {
       const style = {
-        width: /(px)/.test(this.size) ? this.size : /(em)/.test(this.size) ? this.size : null,
-        height: /(px)/.test(this.size) ? this.size : /(em)/.test(this.size) ? this.size : null,
-        'font-size': /(px)/.test(this.size) ? this.size : /(em)/.test(this.size) ? this.size : null,
+        width: /(px)/.test(this.size)
+          ? this.size
+          : /(em)/.test(this.size)
+          ? this.size
+          : null,
+        height: /(px)/.test(this.size)
+          ? this.size
+          : /(em)/.test(this.size)
+          ? this.size
+          : null,
+        'font-size': /(px)/.test(this.size)
+          ? this.size
+          : /(em)/.test(this.size)
+          ? this.size
+          : null,
         color: this.getColor,
         background: this.getBgColor
       }
@@ -71,19 +98,43 @@ export default {
     },
     getBgSize() {
       const classes = {}
-      if(['small','medium','large'].includes(this.size))  {
-        classes[`bg-${this.size}`] = true;
-        classes['vs-icon-bg'] = true;
+      if (['small', 'medium', 'large'].includes(this.size)) {
+        classes[`bg-${this.size}`] = true
+        classes['vs-icon-bg'] = true
       }
 
       return classes
     },
     getColor() {
-      return _color.isColor(this.color) ? this.color : this.color;
+      return _color.isColor(this.color) ? this.color : this.color
     },
     getBgColor() {
-      return _color.isColor(this.bg) ? this.bg : this.bg;
-    },
+      return _color.isColor(this.bg) ? this.bg : this.bg
+    }
   },
+  data() {
+    return {
+      iconComponent: null,
+      exist: false
+    }
+  },
+  watch: {
+    icon() {
+      debugger
+    }
+  },
+  mounted() {
+    debugger
+    console.log(this.icon)
+    // if (this.icon == 'Settings') {
+    //   this.exist = true
+    //   this.iconComponent = () =>
+    //     import('vue-material-design-icons/' + this.icon + '.vue')
+    // }
+  }
 }
 </script>
+
+<style lang="scss">
+@import '@/assets/style/components/vsIcon.scss';
+</style>

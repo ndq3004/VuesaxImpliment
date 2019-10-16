@@ -238,7 +238,6 @@ export default {
   },
   methods: {
     isRTL(value) {
-      debugger
       if (value) {
         /*this.$vs.rtl == undefined*/
         return value
@@ -338,3 +337,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import '@/assets/style/components/vsButton.scss';
+</style>

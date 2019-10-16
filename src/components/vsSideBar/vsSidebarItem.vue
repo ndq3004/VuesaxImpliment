@@ -52,3 +52,6 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+@import '@/assets/style/components/vsSidebar.scss';
+</style>

@@ -1,3 +1,4 @@
+@import '../fullVariable.scss';
 .vs-divider {
   width: 100%;
   position: relative;
@@ -6,12 +7,15 @@
   clear: both;
   display: flex;
   align-items: center;
-  justify-content: center;.after, .before {
+  justify-content: center;
+  .after,
+  .before {
     position: relative;
     display: block;
     width: 100%;
   }
-}.vs-divider--text {
+}
+.vs-divider--text {
   cursor: default;
   user-select: none;
   position: relative;
@@ -20,14 +24,16 @@
   padding-left: 12px;
   padding-right: 12px;
   font-size: 0.9375em;
-}.vs-divider--icon {
+}
+.vs-divider--icon {
   font-size: 1.25em;
 }
 
-@each $colorx in $$vs-colors {
+@each $colorx in $vs-colors {
   .vs-divider-border-#{colorx} {
     border-top-color: getColor($colorx, 1);
-  }.vs-divider-text-#{colorx} {
+  }
+  .vs-divider-text-#{colorx} {
     color: getColor($colorx, 1);
   }
 }
